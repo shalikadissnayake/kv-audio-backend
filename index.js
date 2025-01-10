@@ -5,6 +5,7 @@ import userRouter from "./routes/userRouter.js";
 import productRouter from "./routes/productRouter.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import reviewRouter from "./routes/reviewRouter.js";
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ app.use((req,res,next)=>{
   if(token!=null){
     token = token.replace("Bearer","")
     
-    jwt.verify(token, process.env.JWT_SECRET,
+    jwt.verify(token,process.env.JWT_SECRET,
     (err,decoded)=>{
       if(!err){
         req.user = decoded;
@@ -40,8 +41,9 @@ connection.once("open",()=>{
     console.log("MongoDB Connection established successfully")
 })
 
-app.use("/api/users", userRouter)
-app.use("/api/products", productRouter)
+app.use("/api/users", userRouter);
+app.use("/api/products", productRouter);
+app.use("/api/reviews",reviewRouter);
 
 app.listen(3000,()=>{
     console.log("Server is running on port 3000")

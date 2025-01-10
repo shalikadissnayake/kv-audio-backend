@@ -31,6 +31,11 @@ const userSchema = new mongoose.Schema({
     phone :{
         type :String,
         required : true   
+    },
+    profilePicture : {
+        type : String,
+        required :true,
+        default :"https://vectorified.com/images/default-user-icon-33.jpg"
     }
 });
 
