@@ -24,8 +24,9 @@ export function addReview(req,res){
 
 }
 export function getReviews(req,res){
+    
     const user = req.user;
-
+    
     if(user==null || user.role != "admin"){
         Review.find({isApproved : true}).then((reviews)=>{
             res.json(reviews);
@@ -37,6 +38,7 @@ export function getReviews(req,res){
             res.json(reviews);
         })
     }
+    
 }
 
 export function deleteReview
